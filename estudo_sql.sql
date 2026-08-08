@@ -67,3 +67,34 @@ SELECT nome,
 FROM funcionarios
 WHERE (departamento = 'TI' OR departamento = 'RH')
 AND ativo = 1;
+
+-- =====================
+-- DIA 5: ORDER BY 
+-- =====================
+
+-- ASC: do menor para o maior 
+SELECT nome, cargo, salario 
+FROM funcionarios
+ORDER BY salario ASC;
+
+-- DESC: do maior para o menor
+SELECT nome, cargo, salario
+FROM funcionarios
+ORDER BY salario DESC;
+
+-- Ordenando por texto (alfabético)
+SELECT nome, cargo, departamento
+FROM funcionarios
+ORDER BY nome ASC;
+
+-- WHERE + ORDER BY
+SELECT nome, cargo, salario
+FROM funcionarios
+WHERE ativo = 1
+ORDER BY salario DESC;
+
+-- Desafio: TI ordenado por nome
+SELECT nome, cargo, salario
+FROM funcionarios
+WHERE departamento = 'TI'
+ORDER BY nome ASC;
