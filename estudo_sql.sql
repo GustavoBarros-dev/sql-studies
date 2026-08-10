@@ -98,3 +98,32 @@ SELECT nome, cargo, salario
 FROM funcionarios
 WHERE departamento = 'TI'
 ORDER BY nome ASC;
+
+-- =====================
+-- DIA 6: LIMIT
+-- =====================
+
+-- LIMIT básico
+SELECT nome, cargo, salario
+FROM funcionarios
+LIMIT 3;
+
+-- TOP 3 maiores salários
+SELECT nome, cargo, salario
+FROM funcionarios
+ORDER BY salario DESC
+LIMIT 3;
+
+-- TOP 3 maiores salários entre ativos
+SELECT nome, cargo, salario
+FROM funcionarios
+WHERE ativo = 1
+ORDER BY salario DESC
+LIMIT 3;
+
+-- Desafio: 2 menores salários do Financeiro
+SELECT nome, cargo, salario
+FROM funcionarios
+WHERE departamento = 'Financeiro'
+ORDER BY salario ASC
+LIMIT 2;
