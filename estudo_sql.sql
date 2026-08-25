@@ -127,3 +127,29 @@ FROM funcionarios
 WHERE departamento = 'Financeiro'
 ORDER BY salario ASC
 LIMIT 2;
+
+-- =====================
+-- DIA 7: GROUP BY
+-- =====================
+
+-- Contagem por departamento
+SELECT departamento, COUNT(*) AS total_funcionarios
+FROM funcionarios
+GROUP BY departamento;
+
+-- Média salarial por departamento
+SELECT departamento, AVG(salario) AS media_salarial
+FROM funcionarios
+GROUP BY departamento;
+
+-- Média salarial por departamento (apenas ativos)
+SELECT departamento, AVG(salario) AS media_salarial
+FROM funcionarios
+WHERE ativo = 1
+GROUP BY departamento;
+
+-- Desafio: salário máximo por departamento (apenas ativos)
+SELECT departamento, MAX(salario) AS salario_maximo
+FROM funcionarios
+WHERE ativo = 1
+GROUP BY departamento;
