@@ -176,3 +176,41 @@ FROM funcionarios
 WHERE ativo = 1
 GROUP BY departamento
 HAVING MAX(salario) > 6000;
+
+-- =====================
+-- DIA 9: JOIN
+-- =====================
+
+-- Segunda tabela usada neste dia
+DROP TABLE IF EXISTS departamentos;
+CREATE TABLE departamentos (
+  id INTEGER PRIMARY KEY,
+  nome_departamento TEXT,
+  gestor TEXT,
+  orcamento REAL
+);
+
+INSERT INTO departamentos VALUES
+(1, 'TI', 'Lucas Martins', 150000),
+(2, 'RH', 'Mariana Lima', 80000),
+(3, 'Financeiro', 'Julia Mendes', 100000),
+(4, 'Marketing', 'Camila Ferreira', 60000);
+
+-- INNER JOIN: só o que existe nas duas tabelas
+SELECT f.nome, f.cargo, d.nome_departamento, d.gestor
+FROM funcionarios f
+INNER JOIN departamentos d
+ON f.departamento = d.nome_departamento;
+
+-- LEFT JOIN: traz todos os departamentos, mesmo sem funcionários
+SELECT d.nome_departamento, f.nome, f.cargo
+FROM departamentos d
+LEFT JOIN funcionarios f
+ON d.nome_departamento = f.departamento;
+
+-- Desafio: nome, departamento e orçamento, ordenado por orçamento DESC
+SELECT f.nome, d.nome_departamento, d.orcamento
+FROM funcionarios f
+INNER JOIN departamentos d
+ON f.departamento = d.nome_departamento
+ORDER BY orcamento DESC;
