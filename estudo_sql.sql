@@ -153,3 +153,26 @@ SELECT departamento, MAX(salario) AS salario_maximo
 FROM funcionarios
 WHERE ativo = 1
 GROUP BY departamento;
+
+-- =====================
+-- DIA 8: HAVING
+-- =====================
+
+-- Departamentos com mais de 2 funcionários
+SELECT departamento, COUNT(*) AS total_funcionarios
+FROM funcionarios
+GROUP BY departamento
+HAVING COUNT(*) > 2;
+
+-- Departamentos com média salarial acima de 5000
+SELECT departamento, AVG(salario) AS media_salarial
+FROM funcionarios
+GROUP BY departamento
+HAVING AVG(salario) > 5000;
+
+-- Desafio: departamentos com salário máximo > 6000 (apenas ativos)
+SELECT departamento, MAX(salario) AS salario_maximo
+FROM funcionarios
+WHERE ativo = 1
+GROUP BY departamento
+HAVING MAX(salario) > 6000;
