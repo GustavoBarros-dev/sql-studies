@@ -214,3 +214,30 @@ FROM funcionarios f
 INNER JOIN departamentos d
 ON f.departamento = d.nome_departamento
 ORDER BY orcamento DESC;
+
+-- =====================
+-- DIA 10: MINI-PROJETO FINAL
+-- Cenário: Relatório de RH para a diretoria
+-- =====================
+
+-- 1. Funcionários ativos, ordenados por salário (maior > menor)
+SELECT nome, cargo, departamento, salario
+FROM funcionarios
+WHERE ativo = 1
+ORDER BY salario DESC;
+
+-- 2. Média salarial por departamento + orçamento (via JOIN)
+SELECT f.departamento, AVG(f.salario) AS media_salarial, d.orcamento
+FROM funcionarios f
+INNER JOIN departamentos d
+ON f.departamento = d.nome_departamento
+WHERE f.ativo = 1
+GROUP BY f.departamento;
+
+-- 3. Departamentos com mais de 1 funcionário ativo, ordenado pela quantidade
+SELECT departamento, COUNT(*) AS total_funcionarios
+FROM funcionarios
+WHERE ativo = 1
+GROUP BY departamento
+HAVING COUNT(*) > 1
+ORDER BY total_funcionarios DESC;
